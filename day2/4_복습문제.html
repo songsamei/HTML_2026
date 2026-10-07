@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 1000px;
+            margin : 20px auto;
+        }
+        #header {
+            width: 950px;
+            background-color: rgb(83, 180, 83);
+            color: white;
+            text-align: center;
+            padding : 20px 0px;
+        }
+        h1, h2 { margin : 0 }
+
+        #section {
+            border : 1px solid #ccc;
+            width: 910px;
+            box-shadow: 2px 2px 15px #ccc;
+            padding : 20px;
+            margin-top : 15px;
+            border-radius: 10px;
+        }
+        .txt {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        table { 
+            width :  100%;
+            margin: 20px 0;
+        }
+        table, tr, th, td {
+            border : 2px solid black;
+            border-collapse: collapse;
+            padding : 10px;
+        }
+        th {
+            background-color: #eee;
+        }
+        .image {
+            text-align: center;
+        }
+        li { font-size: 20px;}
+        img {
+            width: 270px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>자바 수강생 모집</h1>
+            <h2>자바에 관심 있는 새내기 여러분을 모집합니다.</h2>
+        </div>
+        <div id="section">
+            <div class="txt">
+                <div>교내 프로그래밍 동아리에서 <span style="color : blue;">신입생</span>을 대상으로 자바 수강생을 모집합니다.</div>
+                <div style="color : red;">학부나 전공에 상관없습니다.</div>
+                <div>평소 방송에 관심있었던 여러 학우들의 지원바랍니다.</div>
+            </div>
+
+            <div>
+                <table>
+                    <tr>
+                        <th>모집 기간</th>
+                        <td>2월 5일 ~ 2월 11일</td>
+                    </tr>
+                    <tr>
+                        <th>모집 분야</th>
+                        <td>자바 기초, 자바 심화, 백엔드기초</td>
+                    </tr>
+                    <tr>
+                        <th>지원 방법</th>
+                        <td>
+                            <div>양식 작성 후 이메일 접수</div>
+			                <div><i>지원서 양식은 교내 동아리 홈페이지 공지 게시판에 있습니다.</i></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <div class="txt">혜택</div>
+                <ul>
+                    <li>아주 작은 소정의 활동비 지급</li>
+                    <li>주기적인 회식</li>
+                </ul>
+            </div>
+            <div class="image">
+                <img src="../images/java_img.jpg">
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

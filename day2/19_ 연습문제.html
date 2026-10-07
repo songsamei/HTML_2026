@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label>텍스트 입력 : <input id="txt"></label>
+    </div>
+    <div>
+        <label>사이즈 입력 : <input id="pxSize"></label>
+    </div>
+    <div>
+        <label>색상 입력 : <input id="color"></label>
+    </div>
+    <button onclick="fnChange()">생성!</button>
+    <div id="result"></div>
+</body>
+</html>
+<script>
+    function fnChange(){
+        let txt = document.querySelector("#txt").value;
+        let pxSize = document.querySelector("#pxSize").value;
+        let color = document.querySelector("#color").value;
+
+        let result = document.querySelector("#result")
+        result.style.fontSize = pxSize+ "px";
+        result.style.color = color;
+        result.innerHTML = txt;
+    }
+
+
+</script>

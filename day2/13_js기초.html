@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fnAlert()">alert버튼</button>
+    <button onclick="fnConfirm()">confirm버튼</button>
+    <button onclick="fnPrompt()">prompt버튼</button>
+</body>
+</html>
+<script>
+    // 변수
+    // 자바처럼 변수 선언 시 정수, 실수, 불린 등을 구분 안해도 된다.
+    // let, var에 다 담으면 되고
+    // const는 상수
+
+    let a = 30;
+    let b = 30.5;
+    let c = true;
+    let d = "Hello"
+    let e = [1,3,5,7,9];
+    let f = {name : "홍길동", age : 30};
+    let g = new Date();
+    let h = function(){
+        alert("ㅎㅇ");
+    }
+
+
+    function fnAlert(){
+        // alert -> 알림 창. '확인' 버튼 하나밖에 없음
+        alert("버튼을 눌러써여");
+    };
+    function fnConfirm(){
+        // '확인', '취소' 버튼이 있음.
+        // '확인' 누르면 true 리천 '취소' 누르면 flase 리턴
+        // let result = confirm("지짜 삭제?");
+        // if(result){
+        //     alert("삭제해써여");
+        // }
+        if(confirm("지짜 삭제?")){
+            alert("삭제해써여");
+        }
+    };
+    function fnPrompt(){
+        // 잘 안씀. 참고로만 알아두셈
+        // 값을 입력 받을 수 있는 창
+        let name = prompt("이름 입력 ㄱㄱ");
+        alert(name + "님 환영쓰");
+    };
+
+    // console.log("ㅎㅇㅇ"); // 자바의 프린트문
+
+    let name = "홍길동";
+    if(name == "홍길동"){ // true
+        console.log("참");
+    } else {
+        console.log("거짓");
+    }
+
+    let num = "10";
+    if(num == 10){
+        console.log("2번 참");
+    } else {
+        console.log("2번 거짓");
+    }
+
+    if(num === 10){
+        console.log("3번 참");
+    } else {
+        console.log("3번 거짓");
+    }
+
+    // '='이 2개짜리는 타입 상관없이 값만 같다면 'true'리턴
+    // '='이 3개짜리는 값과 타입 모두 비교해서 둘다 같아야 'true' 리턴
+
+</script>
