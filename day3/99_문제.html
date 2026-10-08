@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, tr, th {
+            border: 2px solid black; /* 2픽셀 크기의 검은색 선(solid) */
+            border-collapse: collapse; /* 겹치는 선 하나로 */
+            text-align: center; /* 가운데 정렬 */
+            box-sizing: border-box;
+            margin: 10px;
+            background-color: rgb(255, 249, 241);
+        }
+        .box1, .box2 {
+            float: left;
+            box-sizing: border-box;
+        }
+        .size {
+            width: 300px;
+            height: 300px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <table class="box1">
+        <tr>
+            <th><img src="../images/999.jpg" width="300px" height="300px"></th>
+            <th class="size">
+                <h2>심기 불편</h2>
+                <h3>-거성 박명수-</h3>
+            </th>
+        </tr>
+    </table>
+    <table class="box2">
+        <tr>
+            <th><img src="../images/10점이요.jpg" width="300px" height="300px"></th>
+            <th class="size">
+                <h2>10..10점이요</h2>
+                <h3>-거성 박명수-</h3>
+            </th>
+        </tr>
+    </table>
+</body>
+</html>

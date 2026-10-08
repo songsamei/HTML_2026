@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+    <style>
+        /* 모든 div태그 색상이 orange */
+        div {
+            color: orange;
+        }
+        /* div태그 안에 모든 하위 요소 span태그에 적용 */
+        div span {
+            font-weight: bold;
+        }
+        /* 모든 div와 span태그 */
+        div, span {
+            font-size: 20px;
+        }
+        /* div 자식 span 태그에 적용 */
+        /* 손자뻘 태그에는 적용이 안된다. (ex. div -> p -> span에는 적용 xxx) */
+        div > span {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>HTML 즐겁닿ㅎㅎㅎ</span>
+        <p>
+            <span>javascript도 재밌닿ㅎ</span>
+        </p>
+    </div>
+</body>
+</html>

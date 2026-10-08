@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input 태그!</title>
+</head>
+<body>
+    <fieldset>
+        <legend>회원가입</legend>
+        <!-- input 태그의 기본타입은 text라서 생략가능 -->
+        <div>
+            <label>아이디 : <input id = "userId" type="text" autofocus placeholder="아이디를 입력 해 주세요."></label>
+            <input type="button" value="중복체크">
+        </div>
+        <div>
+            <label>비밀번호 : <input id = "pwd1" type="password" placeholder="비밀번호를 입력 해 주세요."></label>
+        </div>
+        <div>
+            <label>비밀번호 확인 : <input id = "pwd2" type="password" placeholder="비밀번호를 한번 더 입력 해 주세요."></label>
+        </div>
+        <div>
+            <!-- 나중에 정규식으로 대체 -->
+            <label>이메일 : <input id = "email" type="email"></label>
+        </div>
+        <div>
+            성별 : 
+            <label><input type="radio" name="gender" value="M">남자</label>
+            <label><input type="radio" name="gender" value="F">여자</label>
+        </div>
+        <div>
+            자기소개 :
+            <div>
+                <textarea id = "intro" rows="4" cols="30" placeholder="증바람 ㄱ?"></textarea>
+            </div>
+        </div>
+
+        <div>
+            <button onclick="fnjoin()">회원가입</button>
+        </div>
+
+    </fieldset>
+</body>
+</html>
+<script>
+    function fnjoin() {
+        // 가정 : db로 회원정보를 보내기 전에 검증
+        // 아이디 -> 6글자 이상
+        // 비밀번호 -> 4글자 이상, 비밀번호와 비밀번호 확인은 같아야 함
+        // 이메일 -> 빈 값 금지
+
+        let id = document.getElementById("userId").value;
+        let pwd1 = document.querySelector("#pwd1").value;
+        let pwd2 = document.querySelector("#pwd2").value;
+        let email = document.querySelector("#email").value;
+
+        // if(id.length < 6){
+        //     alert("아이디는 6글자 이상 입력해주세요.");
+        //     return;
+        // }
+        
+        // if(pwd1 < 4){
+        //     alert("비밀번호는 4글자 이상 입력해주세요.");
+        //     return;
+        // }
+
+        // if(pwd2 != pwd1){
+        //     alert("비밀번호가 서로 다릅니다.");
+        //     return;
+        // }
+
+        // if(email.length <1){
+        //     alert("이메일을 입력 해 주세요.");
+        //     return;
+        // }
+
+        let gender = document.querySelectorAll("input[name = 'gender']:checked");
+        if(gender == null){
+            alert("성별을 선택하세요.");
+            return;
+        }
+
+        alert("가입을 축하드립니다.");
+    }
+</script>
