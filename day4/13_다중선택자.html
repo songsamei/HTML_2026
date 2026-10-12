@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다중선택자</title>
+</head>
+<body>
+    <div class="subject">자바</div>
+    <div class="subject">오라클</div>
+    <div class="subject">HTML</div>
+    <div>
+        <button onclick="fnTest()">클릭ㅠ_ㅠ</button>
+    </div>
+</body>
+</html>
+<script>
+    function fnTest(){
+        let obj = document.querySelectorAll(".subject");
+        console.log(obj);
+
+        for(let i = 0; i < obj.length; i++){
+            // obj[i].style.color = "blue"
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            obj[i].style.color = `rgb(${r}, ${g}, ${b})`
+        }
+    }
+</script>

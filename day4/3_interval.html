@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 500px;
+            margin: 20px auto;
+        }
+        #time {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            color: rgb(160, 160, 255);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="time"></div>
+    </div>
+</body>
+</html>
+<script>
+    let obj = document.querySelector("#time");
+    // obj.innerHTML = datetime.toLocaleTimeString();
+    setInterval(function(){
+        let datetime = new Date();
+
+        let hour = datetime.getHours() < 10 ? "0" + datetime.getHours() : datetime.getHours();
+        let min = datetime.getMinutes() < 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        let sec = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+
+        let time = hour + " : " + min + " : " + sec;
+
+        obj.innerHTML = time;
+    }, 1000);
+</script>

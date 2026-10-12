@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 100px);
+            grid-template-areas:
+            "b-box b-box b-box"
+            "o-box g-box g-box"
+            "o-box p-box p-box"
+            ;
+        }
+        .box {
+            margin: 5px;
+            border: 2px solid black;
+            text-align: center;
+            padding: 10px;
+            font-size: 15px;
+
+        }
+        .blue-box {
+            background-color: rgb(155, 155, 255);
+            grid-area: b-box;
+        }
+        .orang-box {
+            background-color: rgb(255, 213, 134);
+            grid-area: o-box;
+        }
+        .green-box {
+            background-color: rgb(108, 184, 108);
+            grid-area: g-box;
+        }
+        .purple-box {
+            background-color: rgb(186, 110, 186);
+            grid-area: p-box;
+        }
+        .gray-box {
+            background-color: rgb(184, 183, 183);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box blue-box">box1</div>
+        <div class="box orang-box">box2</div>
+        <div class="box purple-box">box3</div>
+        <div class="box gray-box">box4</div>
+        <div class="box green-box">box5</div>
+        <div class="box">box6</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 800px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div style="text-align: center;">
+            <label><input onclick="fnSubject()" type="radio" name="subject" value="java">자바</label>
+            <label><input onclick="fnSubject()" type="radio" name="subject" value="oracle">오라클</label>
+            <label><input onclick="fnSubject()" type="radio" name="subject" value="html">html</label>
+            <label><input onclick="fnSubject()" type="radio" name="subject" value="jquery">jquery</label>
+        </div>
+        <hr>
+        <div style="text-align: center;">
+            <label><input onclick="fnTest('java')" type="radio" name="subject2" >자바</label>
+            <label><input onclick="fnTest('oracle')" type="radio" name="subject2" >오라클</label>
+            <label><input onclick="fnTest('html')" type="radio" name="subject2" >html</label>
+            <label><input onclick="fnTest('jquery')" type="radio" name="subject2" >jquery</label>
+        </div>
+        <hr>
+        <div style="text-align: center;">
+            <img src="" id="image">
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function fnSubject(){
+        let subject = document.querySelector("input[name='subject']:checked").value;
+        let image = document.querySelector("#image");
+        image.src = `../images/${subject}.jpg`;
+        // if(subject == "java"){
+        //     image.src = "../images/java.jpg";
+        // }
+        // if(subject == "html"){
+        //     image.src = "../images/html.jpg";
+        // }
+        // if(subject == "oracle"){
+        //     image.src = "../images/oracle.jpg";
+        // }
+        // if(subject == "jquery"){
+        //     image.src = "../images/jquery.jpg";
+        // }
+
+    }
+    function fnTest (subject){
+        let image = document.querySelector("#image");
+        image.src = `../images/${subject}.jpg`;
+    }
+</script>

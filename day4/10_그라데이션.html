@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+        }
+        .grad {
+            background: blue; /* 그라데이션을 지원 해 주지 않는 브라우저에게 보여주는 색상이다. */
+            background:linear-gradient(to right bottom, rgb(70, 103, 253), white);
+        }
+        .grad2 {
+            background: blue; /* 그라데이션을 지원 해 주지 않는 브라우저에게 보여주는 색상이다. */
+            background:linear-gradient(45deg, rgb(70, 103, 253), white);
+        }
+    </style>
+</head>
+<body>
+    <div class="grad2"></div>
+</body>
+</html>
