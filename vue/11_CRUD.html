@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        table, tr, td, th{
+            border : 2px solid black;
+            border-collapse: collapse;
+            padding : 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- html. 반드시 id가 app인 태그 안에서 작업 -->
+        <!-- (script 맨 하단 app.mount('#app'); 여기 아이디와 같아야 함) -->
+        <div v-if="kind == 'read'">
+            <h3>게시글 목록</h3>
+            <table>
+                <tr>
+                    <th>선택</th>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>삭제</th>
+                </tr>
+                <tr v-for="item in list">
+                    <td><input type="radio" name="board" v-model="selectItem" :value="item.boardNo"></td>
+                    <td>{{item.boardNo}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.nickName}}</td>
+                    <td><button @click="fnRemove(item.boardNo)">삭제</button></td>
+                </tr>
+            </table>
+            <br>
+            <button @click="fnAddMenu">게시글등록</button>
+            <button @click="fnUpdateMenu">수정</button>
+        </div>
+
+        <div v-if="kind == 'create'">
+            <h3>게시글 등록</h3>
+            <div>
+                제목 : <label><input v-model="title"></label>
+            </div>
+            <div>
+                내용 : <label><input v-model="contents"></label>
+            </div>
+            <div>
+                닉네임 : <label><input v-model="nickName"></label>
+            </div>
+            <div>
+                <button @click="fnAddBoard">등록</button>
+                <button @click="kind = 'read'">되돌아가기</button>
+            </div>
+        </div>
+
+        <div v-if="kind == 'update'">
+            <h3>게시글 수정</h3>
+            <div>
+                제목 : <label><input v-model="info.title"></label>
+            </div>
+            <div>
+                내용 : <label><input v-model="info.contents"></label>
+            </div>
+            <div>
+                닉네임 : <label><input v-model="info.nickName"></label>
+            </div>
+            <div>
+                <button @click="fnUpdate">수정</button>
+                <button @click="kind = 'read'">되돌아가기</button>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 - (key : value)
+                kind : "read",
+                title : "",
+                contents : "",
+                nickName : "",
+                selectItem : "",
+                info : {},
+                updateIndex : "",
+                list : [
+                    {boardNo : 1, title : "첫번째 게시글", contents : "1빠~~~", nickName : "길동이"},
+                    {boardNo : 2, title : "하이요~~~", contents : "HTML 좋아요", nickName : "철수"},
+                ]
+            };
+        },
+        methods: {
+            // 함수(메소드) - (key : function())
+            fnAddMenu : function () {
+                let self = this;
+                self.title = "";
+                self.contents = "";
+                self.nickName = "";
+                self.kind = "create";
+            },
+            fnAddBoard : function() {
+                let self = this;
+                let board = {
+                    boardNo : self.list.length + 1,
+                    title : self.title,
+                    contents : self.contents,
+                    nickName : self.nickName
+                }
+                self.list.push(board);
+                self.kind = "read";
+            },
+            fnRemove : function(boardNo){
+                let self = this;
+                if(!confirm("정말 삭제하실?")){
+                    return;
+                }
+
+                for(let i=0; i<self.list.length; i++){
+                    if(self.list[i].boardNo == boardNo){
+                        self.list.splice(i, 1);
+                        break;
+                    }
+                }
+            },
+            fnUpdateMenu : function(){
+                let self = this;
+                if(self.selectItem == ""){
+                    alert("수정할 게시글을 선택해주세요.");
+                    return;
+                }
+                self.kind = 'update';
+                for(let i=0; i<self.list.length; i++){
+                    if(self.list[i].boardNo == self.selectItem){
+                        self.info = {...self.list[i]};
+                        self.updateIndex = i;
+                        break;
+                    }
+                }
+            },
+            fnUpdate : function(){
+                let self = this;
+                self.list[self.updateIndex] = self.info;
+                self.selectItem = "";
+                self.kind = "read";
+            }
+        }, // methods
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+        }
+    });
+
+    app.mount('#app');
+</script>

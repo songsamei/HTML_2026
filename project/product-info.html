@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body { 
+            background-color: #f0f2f5;
+        }
+        #container {
+            width: 850px;
+            margin : 50px auto;
+            background-color: white;
+            padding : 20px 40px;
+            border-radius: 15px;
+        }
+        h1{ 
+            padding-bottom: 20px;
+            border-bottom: 1px solid black;
+        }
+        .product-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap : 30px
+        }
+        .product-img {
+            flex: 1;
+            width: 400px;
+        }
+        #main-img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border: 1px solid #eee;
+        }
+        #sub-img{
+            display: flex;
+            gap : 10px;
+            margin-left: 20px;
+        }
+        .small-img{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            object-fit: contain;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        #desc {
+            flex: 1;
+            width: 400px;
+        }
+        #desc ul {
+            list-style: none;
+            padding-left: 0;
+            font-weight: 500;
+        }
+        #desc li{
+            font-size: 20px;
+            line-height: 2.5;
+        }
+        #desc button{
+            width: 100%;
+            padding : 12px;
+            background-color: rgb(119, 119, 224);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        #desc button:hover{
+            background-color: rgb(70, 70, 201);
+        }
+
+        .red-txt {color:red;}
+        .blue-txt {color:blue;}
+        .bold-txt {font-weight: bold;}
+        .sub-txt {
+            font-size: 15px;
+            margin-top: -15px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- html. 반드시 id가 app인 태그 안에서 작업 -->
+        <!-- (script 맨 하단 app.mount('#app'); 여기 아이디와 같아야 함) -->
+        <div id="container">
+        <h1>{{info.PRODUCT_NAME}}</h1>
+        <div class="product-wrap">
+            <div class="product-img">
+                <img :src="thumbnail" id="main-img">
+                <div id="sub-img">
+                    <img v-for="item in imgList" :src="item.PATH" class="small-img">
+                    
+                </div>
+            </div>
+            <div id="desc">
+                <ul>
+                    <li>상품명 : {{info.PRODUCT_NAME}}</li>
+                    <li class="red-txt">판매가 : {{info.PRICE}}원</li>
+                    <li>
+                        배송비 : 30,000원
+                        <div class="sub-txt">(10,000,000원 이상 주문시 무료)</div>
+                    </li>
+                    <li class="blue-txt">적립금 : {{Math.round(info.PRICE * 0.01)}}원 (1%)</li>
+                    <li>브랜드 : {{info.BRAND}}</li>
+                    <li>설명 : {{info.DESCRIPTION}}</li>
+                </ul>
+                <button>구매하기</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 - (key : value)
+                productId : "",
+                info : {},
+                imgList : [],
+                thumbnail : ""
+            };
+        },
+        methods: {
+            // 함수(메소드) - (key : function())
+            fnGetProduct : function () {
+                let self = this;
+                $.ajax({
+                    url: "http://192.168.30.57:3000/product/info",
+                    dataType: "json",
+                    type: "GET",
+                    data: {productId : self.productId},
+                    success: function (data) {
+                        console.log(data);
+                        self.info = data.info;
+                        self.imgList = data.imgList;
+                        self.thumbnail = data.info.PATH;
+
+                        setInterval(function(){
+                            let temp = {PATH : self.thumbnail};
+                            self.thumbnail = self.imgList[2].PATH;
+                            self.imgList.splice(2, 1);
+                            self.imgList.unshift(temp);
+                        }, 3000);
+
+
+                    }
+                });
+            }
+        }, // methods
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+            const queryParams = new URLSearchParams(window.location.search);
+            this.productId = queryParams.get('productId') || ''; 
+            console.log(this.productId);
+            if(this.productId == ''){
+                alert("해당 상품 없다!!");
+                location.href="product-home.html";
+            }
+            this.fnGetProduct();
+
+        }
+    });
+
+    app.mount('#app');
+</script>
