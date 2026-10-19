@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개!</title>
+    <link rel="stylesheet" href="profile.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="cursor-light" ref="cursorLight"></div>
+
+        <div class="light light-one"></div>
+        <div class="light light-two"></div>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">✦</span>
+
+        <div class="profile">
+            <header class="top-nav">
+                <a href="../introduction/introduction.html" class="back-btn">← 초대로 돌아가기</a>
+                <div class="nav-right">
+                    <span class="nav-title">PORTFOLIO & PROFILE</span>
+                    <span class="live-clock">{{ currentTime }}</span>
+                </div>
+            </header>
+
+            <section class="section">
+                <div class="profile-avatar">
+                    <img src="yaong.jpg" alt="송이 프로필 사진">
+                </div>
+                <p class="eyebrow">ABOUT ME</p>
+                <h1 class="name">김 송 이</h1>
+
+                <p class="birth">1999.03.23 ( # ENFP )</p>
+
+                <p class="intro-text">
+                    프론트엔드 새내기 입니다!
+                </p>
+                <div class="bar"></div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-num">01</span>
+                    <h2>EDUCATION & HISTORY</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="big-card">
+                        <span class="card-date">2018 ~ 2022</span>
+                        <h3>배재대학교 (전자상거래학과) 졸업</h3>
+                        <p>재학 중 포토샵과 일러스트를 활용한 업무를 주로 함.</p>
+                        <p>상세페이지를 제작하여 크라우드펀딩 달성</p>
+                        <a class="link" target="_blank" href="https://www.wadiz.io/web/campaign/detail/102912"> 보러가기
+                        </a>
+                    </div>
+                    <div class="big-card">
+                        <span class="card-date">2018 - 2025</span>
+                        <h3>아르바이트 인생</h3>
+                        <p>편의점/옷가게/쿠팡/횟집/타코야끼/엽떡/스타벅스/생산직/PC방/고깃집/문화센터/인바운드/숙박업소 등등..</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-num">02</span>
+                    <h2>HOBBY & SKILLS</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="big-card">
+                        <h3>🎨 취미 & 여가</h3>
+                        <p>
+                            • 낚시!!!🐟<br>
+                            • 음악듣기!!!<br>
+                            • 게임하기!!!
+                        </p>
+                    </div>
+                    <div class="big-card">
+                        <h3>💻 기술 스택</h3>
+                        <p>
+                            • HTML<br>
+                            • 포토샵 & 일러스트<br>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-header">
+                    <span class="section-num">03</span>
+                    <h2>FAVORITES</h2>
+                </div>
+                <div class="favorites-grid">
+                    <div class="favorite-item">
+                        <span class="fav-icon">💖</span>
+                        <h4>게임,낚시</h4>
+                        <p>동해 포인트를 노리는 낚시꾼!</p>
+                        <p>게임도 무척 좋아합니다!(스팀/롤/플스)</p>
+                    </div>
+                    <div class="favorite-item">
+                        <span class="fav-icon">🌙</span>
+                        <h4>야행성</h4>
+                        <p>밤을 제일 좋아합니다.</p>
+                        <p>( 밤 + 낚시 + 술 = 극락 )</p>
+                    </div>
+                    <div class="favorite-item">
+                        <span class="fav-icon">🎧</span>
+                        <h4>음악</h4>
+                        <p>음악을 달고 살아야합니다!</p>
+                        <p>( 🤐 : 친밀도 90%이상 달성시 열림 )</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section big-card tmi-section">
+                <span class="card-date">두구두구</span>
+                <h3>✨ 송이의 랜덤 TMI 카드</h3>
+                <p class="tmi-text">
+                    " {{ currentTmi }} "
+                </p>
+                <div class="button">
+                    <button @click="getRandomTmi" class="contact-btn">
+                        TMI 뽑기 🎲
+                    </button>
+                    <button @click="checkSecret" class="contact-btn">
+                        비밀 폭로 확인하기 🤫
+                    </button>
+                </div>
+            </section>
+
+            <section class="content-section contact-box">
+                <h2>저를 더 알고 싶다면?</h2>
+                <p>☎️ 010 ) 0000 - 0000</p>
+                <div class="contact-links">
+                    <a href="mailto:songsamei@gmail.com" class="contact-btn">E-MAIL SEND</a>
+                    <a href="https://github.com/songsamei" target="_blank" rel="noopener noreferrer"
+                        class="contact-btn">GITHUB</a>
+                </div>
+            </section>
+
+            <footer class="profile-footer">
+                <p>© 2026. 재미땅</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted, onUnmounted } = Vue;
+
+        createApp({
+            setup() {
+                const cursorLight = ref(null);
+                const tmiList = ref([
+                    "최대 13시간 낚시를 해봤어요 (아무것도 못잡음)... 🐟",
+                    "스팀 게임 할인할 때 안 사면 병나요.",
+                    "음악을 안 들으면 돌아버려요.🎧",
+                    "알바를 너무 많이 해서 세상의 온갖 진상들을 다 겪어봤습니다 😎",
+                    "AI활용한 컨텐츠 만들기도 좋아해요 🤫",
+                    "ENFP 라서 새로운 사람들과 이야기하는 걸 아주 좋아해요!",
+                    "술을 너무 좋아한 나머지 위염이 생겼지만 위염 약을 먹고 술을 먹으니 나았어요",
+                    "사실 좀 낯가려요🤭",
+                    "근래에 낚시를 못가서 우울해요",
+                    "이 부분은 AI의 도움을 좀 받았어요 (속닥속닥)",
+                ]);
+
+                const currentTmi = ref("버튼을 눌러 송이의 10가지 TMI를 확인해보세요!");
+
+                const currentTime = ref('');
+                const getRandomTmi = () => {
+                    const randomIndex = Math.floor(Math.random() * tmiList.value.length);
+                    currentTmi.value = tmiList.value[randomIndex];
+                };
+
+                const checkSecret = () => {
+                    const userAccept = window.confirm("🚨 주의: 송이의 진짜 특급 비밀입니다. 확인하시겠습니까?");
+
+                    if (userAccept) {
+                        window.alert("🤫 사실 오늘도 낚시 가고 싶어서, 술 마시고 싶어서 엉들썩거리는 중이예요 😆 (비밀이에요!)");
+                    } else {
+                        window.alert("현명한 선택이예요... 안 보는 게 정신 건강에 이로워요 😌");
+                    }
+                };
+
+                const handleMouseMove = (e) => {
+                    if (cursorLight.value) {
+                        cursorLight.value.style.left = `${e.clientX}px`;
+                        cursorLight.value.style.top = `${e.clientY}px`;
+                    }
+                };
+
+                const updateClock = () => {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    currentTime.value = `${hours}:${minutes}:${seconds}`;
+                };
+
+                let timer = null;
+
+                onMounted(() => {
+                    window.addEventListener('mousemove', handleMouseMove);
+                    updateClock();
+                    timer = setInterval(updateClock, 1000);
+                });
+                onUnmounted(() => {
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    clearInterval(timer);
+                });
+
+                return {
+                    cursorLight,
+                    currentTmi,
+                    currentTime,
+                    getRandomTmi,
+                    checkSecret
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

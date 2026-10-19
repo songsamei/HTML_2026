@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@8.3.1/dist/apexcharts.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- html. 반드시 id가 app인 태그 안에서 작업 -->
+        <!-- (script 맨 하단 app.mount('#app'); 여기 아이디와 같아야 함) -->
+        <div id="chart"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 변수 - (key : value)
+                chart : null
+            };
+        },
+        methods: {
+            // 함수(메소드) - (key : function())
+            fnChart : function () {
+                let self = this;
+                $.ajax({
+                    url: "http://192.168.30.57:3000/student",
+                    dataType: "json",
+                    type: "GET",
+                    data: {},
+                    success: function (data) {
+                       let dataList = [];
+                       let nameList = [];
+                       for(let i=0; i<data.list.length; i++){
+                            dataList.push(data.list[i].STU_HEIGHT);
+                            nameList.push(data.list[i].STU_NAME);
+                       } 
+                        
+                       var options = {
+                            series: [
+                                {
+                                    name: '키',
+                                    data: dataList,
+                                },
+                            ],
+                            annotations: {
+                                points: [
+                                {
+                                    x: 'Pomegranates',
+                                    seriesIndex: 0,
+                                    label: {
+                                    borderColor: '#775DD0',
+                                    offsetY: 0,
+                                    style: {
+                                        color: '#fff',
+                                        background: '#775DD0',
+                                    },
+                                    text: 'Best seller',
+                                    },
+                                },
+                                ],
+                            },
+                            chart: {
+                                height: 350,
+                                type: 'bar',
+                            },
+                            title: {
+                                text: '학생별 키 비교',
+                                align: 'center',
+                            },
+                            plotOptions: {
+                                bar: {
+                                borderRadius: 10,
+                                columnWidth: '50%',
+                                },
+                            },
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            stroke: {
+                                width: 0,
+                            },
+                            xaxis: {
+                                labels: {
+                                rotate: -45,
+                                },
+                                categories: nameList,
+                                tickPlacement: 'on',
+                            },
+                            yaxis: {
+                                title: {
+                                text: '키(cm)',
+                                },
+                            },
+                        }
+
+                        self.chart = new ApexCharts(document.querySelector('#chart'), options)
+                        self.chart.render()
+
+                    }
+                });
+            }
+        }, // methods
+        mounted() {
+            // 처음 시작할 때 실행되는 부분
+            let self = this;
+            self.fnChart();
+        }
+    });
+
+    app.mount('#app');
+</script>
